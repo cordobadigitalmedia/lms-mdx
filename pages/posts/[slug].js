@@ -39,7 +39,7 @@ export default function PostPage({ source, frontMatter }) {
           <p className="description">{frontMatter.description}</p>
         )}
       </div>
-      <main>
+      <main className="prose prose-green">
         <MDXRemote {...source} components={components} />
       </main>
 
