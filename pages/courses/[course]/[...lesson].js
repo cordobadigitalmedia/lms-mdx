@@ -1,6 +1,16 @@
 import { useState } from "react";
+import { useRouter } from 'next/router'
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
 
 export default function Lesson() {
+  const router = useRouter();
+  const { course, lesson } = router.query;
+  console.log(course, lesson);
   const [navShow, setNavShow] = useState(false);
 
   const onToggleNav = () => {
@@ -20,7 +30,6 @@ export default function Lesson() {
           <svg
             className="h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -39,7 +48,6 @@ export default function Lesson() {
           <svg
             className="w-8 h-8"
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -53,6 +61,36 @@ export default function Lesson() {
           </svg>
           <span className="text-2xl font-extrabold">My Course</span>
         </a>
+        
+        <Timeline position="left">
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineDot />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent>Eat</TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineDot />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent>Code</TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineDot />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent>Sleep</TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineDot />
+            </TimelineSeparator>
+            <TimelineContent>Repeat</TimelineContent>
+          </TimelineItem>
+        </Timeline>
         <nav className="divide-y divide-gray-400">
           <a
             href=""
@@ -64,7 +102,6 @@ export default function Lesson() {
               focusable="false"
               data-prefix="far"
               data-icon="circle"
-              class="svg-inline--fa fa-circle"
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -86,7 +123,6 @@ export default function Lesson() {
               focusable="false"
               data-prefix="fas"
               data-icon="circle"
-              class="svg-inline--fa fa-circle"
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
