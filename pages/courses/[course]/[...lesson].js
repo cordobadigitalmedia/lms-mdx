@@ -1,17 +1,22 @@
 import { useState } from "react";
 import { useRouter } from 'next/router'
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline'
 
 export default function Lesson() {
   const router = useRouter();
   const { course, lesson } = router.query;
   console.log(course, lesson);
   const [navShow, setNavShow] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
 
   const onToggleNav = () => {
     document.querySelector(".sidebar").classList.toggle("-translate-x-full");
@@ -43,143 +48,81 @@ export default function Lesson() {
           </svg>
         </button>
       </div>
-      <div className="sidebar bg-blue-800 text-blue-100 w-64 space-y-6 px-2 absolute md:relative inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition duration-200 ease-in-out">
-        <a href="#" className="text-white flex items-center space-x-2">
-          <svg
-            className="w-8 h-8"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-            />
-          </svg>
-          <span className="text-2xl font-extrabold">My Course</span>
-        </a>
-        
-        <Timeline position="left">
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>Eat</TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>Code</TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>Sleep</TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot />
-            </TimelineSeparator>
-            <TimelineContent>Repeat</TimelineContent>
-          </TimelineItem>
-        </Timeline>
+      <div className="sidebar bg-gray-100 text-blue-100 w-96 space-y-6 px-0 absolute md:relative inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition duration-200 ease-in-out">
+        <div className="round-md bg-white p-2 m-2 drop-shadow-sm">
+          <span className="text-xl font-extrabold text-slate-800">My Course</span>
+        </div>
         <nav className="divide-y divide-gray-400">
-          <a
-            href=""
-            className="flex items-center space-x-2 py-2.5 px-4 hover:bg-blue-700 transition duration-200"
-          >
-            <svg
-              className="w-4 h-4"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="far"
-              data-icon="circle"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <path
-                fill="currentColor"
-                d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 464c-114.7 0-208-93.31-208-208S141.3 48 256 48s208 93.31 208 208S370.7 464 256 464z"
-              ></path>
-            </svg>
-            <span>Learn</span>
-          </a>
-          <a
-            href=""
-            className="flex items-center space-x-2 py-2.5 px-4 hover:bg-blue-700 transition duration-200"
-          >
-            <svg
-              className="w-4 h-4"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="circle"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <path
-                fill="currentColor"
-                d="M512 256c0 141.4-114.6 256-256 256s-256-114.6-256-256s114.6-256 256-256S512 114.6 512 256z"
-              ></path>
-            </svg>
-            <span>Remember the Vocabulary</span>
-          </a>
-          <a href="" className="block py-2.5 px-4">
-            Understand the big ideas
-          </a>
-          <a href="" className="block py-2.5 px-4">
-            Apply these steps
-          </a>
-          <a href="" className="block py-2.5 px-4">
-            Refine your practice
-          </a>
-          <a
-            href=""
-            className="block py-2.5 px-4 hover:bg-blue-700 transition duration-200 rounded"
-          >
-            Reflect
-          </a>
-          <a href="" className="block py-2.5 px-4">
-            Are you looking forward to your prayer?
-          </a>
-          <a href="" className="block py-2.5 px-4">
-            How do you feel now when you recite?
-          </a>
-          <a href="" className="block py-2.5 px-4">
-            How do you feel after your prayer?
-          </a>
-          <a
-            href=""
-            className="block py-2.5 px-4 hover:bg-blue-700 transition duration-200 rounded"
-          >
-            Practice
-          </a>
-          <a href="" className="block py-2.5 px-4">
-            Avoid these pitfalls
-          </a>
-          <a href="" className="block py-2.5 px-4">
-            Establish your training plan
-          </a>
-          <a href="" className="block py-2.5 px-4">
-            Get role models and accountability partners
-          </a>
-          <a href="" className="block py-2.5 px-4">
-            Find your why
-          </a>
+          <div className="bg-gray-100">
+            <div className="p-0 m-0 py-2 border-t-2 border-slate-400">
+              <div className="transform transition cursor-pointer ml-10 flex items-center pt-2 m-0">
+                <div className="w-6 h-6 p-0 m-px border-2 border-slate-400 absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
+                <div className="text-black font-medium flex-grow">Learn</div>
+                <div className="text-gray-500 text-sm mx-2">0/4</div>
+                <ChevronUpIcon className="h-5 w-5 text-slate-500 mr-2" />
+              </div>
+            </div>
+            <div className="p-0 m-0 bg-stone-300">
+              <div className="transform transition cursor-pointer ml-10 flex items-center pt-2 m-0">
+                <div className="w-4 h-4 bg-white p-0 m-px absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
+                <div className="text-gray-800 font-medium">Remember the Vocabulary</div>
+              </div>
+              <div className="border-l-2 h-5 ml-5">
+              </div>
+            </div>
+            <div className="p-0 m-0">
+              <div className="border-l-2 border-slate-400 h-2 ml-5">
+              </div>
+              <div className="transform transition cursor-pointer ml-10 flex items-center pt-0 m-0">
+                <div className="w-4 h-4 bg-white border-2 border-slate-500 p-0 m-px absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
+                <div className="text-gray-800 font-medium">Understand the big ideas</div>
+              </div>
+              <div className="border-l-2 border-slate-400 h-3 ml-5">
+              </div>
+            </div>
+            <div className="p-0 m-0">
+              <div className="border-l-2 border-slate-400 h-2 ml-5">
+              </div>
+              <div className="transform transition cursor-pointer ml-10 flex items-center pt-0 m-0">
+                <div className="w-4 h-4 bg-white border-2 border-slate-500 p-0 m-px absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
+                <div className="text-gray-800 font-medium">Apply these steps</div>
+              </div>
+              <div className="border-l-2 border-slate-400 h-3 ml-5">
+              </div>
+            </div>
+            <div className="p-0 m-0">
+              <div className="border-l-2 border-slate-400 h-2 ml-5">
+              </div>
+              <div className="transform transition cursor-pointer ml-10 flex items-center pt-0 m-0">
+                <div className="w-4 h-4 bg-white border-2 border-slate-500 p-0 m-px absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
+                <div className="text-gray-800 font-medium">Refine your practice</div>
+              </div>
+              <div className="h-3 ml-5">
+              </div>
+            </div>
+            <div className="p-0 m-0 py-2 border-t-2 border-slate-400">
+              <div className="transform transition cursor-pointer ml-10 flex items-center pt-2 m-0">
+                <div className="w-6 h-6 p-0 m-px border-2 border-slate-400 absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
+                <div className="text-black font-medium flex-grow">Reflect</div>
+                <div className="text-gray-500 text-sm mx-2">0/3</div>
+                <ChevronDownIcon className="h-5 w-5 text-slate-500 mr-2" />
+              </div>
+            </div>
+            <div className="p-0 m-0 py-2 border-t-2 border-slate-400">
+              <div className="transform transition cursor-pointer ml-10 flex items-center pt-2 m-0">
+                <div className="w-6 h-6 p-0 m-px border-2 border-slate-400 absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
+                <div className="text-black font-medium flex-grow">Practice</div>
+                <div className="text-gray-500 text-sm mx-2">0/5</div>
+                <ChevronDownIcon className="h-5 w-5 text-slate-500 mr-2" />
+              </div>
+            </div>
+          </div>
         </nav>
       </div>
 
-      <div className="flex-1 p-10 text-2xl font-bold">content</div>
+      <div className="flex-1 p-10 text-2xl font-bold">
+        <h1>Hello World</h1>
+      </div>
     </div>
   );
 }
