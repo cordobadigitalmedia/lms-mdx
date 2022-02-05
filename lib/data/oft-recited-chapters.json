@@ -1,0 +1,57 @@
+[
+    {
+        "title": "Learn",
+        "lessons": [
+            {
+                "title": "Remember the Vocabulary",
+                "content": "remember-the-vocabulary.mdx"
+            },
+            {
+                "title": "Understand the big ideas",
+                "content": "understand-the-big-ideas.mdx"
+            },
+            {
+                "title": "Apply these steps",
+                "content": "apply-these-steps.mdx"
+            },
+            {
+                "title": "Refine your practice",
+                "content": "refine-your-practice.mdx"
+            }
+        ]
+    },
+    {
+        "title": "Reflect",
+        "lessons": [
+            {
+                "title": "Are you looking forward to your prayer?",
+                "content": "are-you-looking-forward-to-your-prayer.mdx"
+            },
+            {
+                "title": "How do you feel now when you recite?",
+                "content": "how-do-you-feel-now-when-you-recite.mdx"
+            },
+            {
+                "title": "How do you feel after your prayer?",
+                "content": "how-do-you-feel-after-your-prayer.mdx"
+            }
+        ]
+    },
+    {
+        "title": "Practice",
+        "lessons": [
+            {
+                "title": "Avoid these pitfalls",
+                "content": "avoid-these-pitfalls.mdx"
+            },
+            {
+                "title": "Establish your training plan",
+                "content": "establish-your-training-plan.mdx"
+            },
+            {
+                "title": "Get role models and accountability partners",
+                "content": "get-role-models.mdx"
+            }
+        ]
+    }
+]
