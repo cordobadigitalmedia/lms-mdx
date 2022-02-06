@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
-import Chapters from '../../lib/data/oft-recited-chapters.json';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline';
+import Link from 'next/link'
 
-export default function LessonNav() {
-    const [expanded, setExpanded] = useState(false);
-    const [currentChapter, setCurrentChapter] = useState(0);
-    const [currentLesson, setCurrentLesson] = useState(0);
-
-    const handleChange = (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false);
-    };
+export default function LessonNav({ chapters, lesson, course }) {
+    console.log(course);
+    const [currentChapter, setCurrentChapter] = useState(Number(lesson[0]) - 1);
+    const [currentLesson, setCurrentLesson] = useState(Number(lesson[1]) - 1);
 
     const onToggleAccordion = (i) => {
         if (currentChapter === i) {
@@ -33,7 +29,7 @@ export default function LessonNav() {
             document.querySelector("#panel" + currentChapter).classList.toggle("h-full");
             document.querySelector("#panel" + currentChapter + "_down").classList.toggle("hidden");
             document.querySelector("#panel" + currentChapter + "_up").classList.toggle("hidden");
-            Chapters.map((chapter, j) => {
+            chapters.map((chapter, j) => {
                 if (j !== currentChapter) {
                     document.querySelector("#panel" + j).classList.add("scale-y-0");
                     document.querySelector("#panel" + j).classList.add("h-0");
@@ -43,7 +39,7 @@ export default function LessonNav() {
             });
             document.querySelector("#lesson" + currentChapter + "_" + currentLesson).classList.add("bg-stone-300");
             document.querySelector("#lesson_bullet" + currentChapter + "_" + currentLesson).classList.add("bg-white");
-            Chapters[currentChapter].lessons.map((lesson, j) => {
+            chapters[currentChapter].lessons.map((lesson, j) => {
                 if (j !== currentLesson) {
                     document.querySelector("#lesson" + currentChapter + "_" + j).classList.remove("bg-stone-300");
                     document.querySelector("#lesson_bullet" + currentChapter + "_" + j).classList.remove("bg-white");
@@ -60,7 +56,7 @@ export default function LessonNav() {
         if (currentChapter >= 0 && currentLesson >= 0) {
             document.querySelector("#lesson" + currentChapter + "_" + currentLesson).classList.add("bg-stone-300");
             document.querySelector("#lesson_bullet" + currentChapter + "_" + currentLesson).classList.add("bg-white");
-            Chapters[currentChapter].lessons.map((lesson, j) => {
+            chapters[currentChapter].lessons.map((lesson, j) => {
                 if (j !== currentLesson) {
                     document.querySelector("#lesson" + currentChapter + "_" + j).classList.remove("bg-stone-300");
                     document.querySelector("#lesson_bullet" + currentChapter + "_" + j).classList.remove("bg-white");
@@ -79,10 +75,10 @@ export default function LessonNav() {
 
     return (
         <>
-            {Chapters.length > 0 &&
+            {chapters.length > 0 &&
                 <nav className="divide-y divide-gray-400">
                     <div className="bg-gray-100">
-                        {Chapters.map((chapter, i) =>
+                        {chapters.map((chapter, i) =>
                             <div key={`chapter_${i}`}>
                                 <div className="p-0 m-0 py-2 border-t-2 border-slate-400" onClick={() => onToggleAccordion(i)}>
                                     <div className="transform transition cursor-pointer ml-10 flex items-center pt-2 m-0">
@@ -97,10 +93,12 @@ export default function LessonNav() {
                                     <div id={"panel" + i} className="transform-all scale-y-0 origin-top h-0 transition-all">
                                         {chapter.lessons.map((lesson, j) =>
                                             <div id={"lesson" + i + "_" + j} className="p-0 m-0" onClick={() => onClickLesson(j)} key={`lesson_${j}`}>
-                                                <div className="transform transition cursor-pointer ml-10 flex items-center pt-2 m-0">
-                                                    <div id={"lesson_bullet" + i + "_" + j} className="w-4 h-4 border-2 border-gray-500 p-0 m-px absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
-                                                    <div className="text-gray-800 font-medium">{lesson.title}</div>
-                                                </div>
+                                                <Link href={`/courses/${course}/${i + 1}/${j + 1}`}>
+                                                    <div className="transform transition cursor-pointer ml-10 flex items-center pt-2 m-0">
+                                                        <div id={"lesson_bullet" + i + "_" + j} className="w-4 h-4 border-2 border-gray-500 p-0 m-px absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
+                                                        <div className="text-gray-800 font-medium">{lesson.title}</div>
+                                                    </div>
+                                                </Link>
                                                 {j < chapter.lessons.length - 1 ? <div className="border-l-2 border-gray-500 h-5 ml-5"></div> : <div className="h-5 ml-5"></div>}
                                             </div>
                                         )}

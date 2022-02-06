@@ -15,16 +15,20 @@
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@heroicons/react": "^1.0.5",
     "@tailwindcss/typography": "^0.5.0",
+    "fs": "^0.0.1-security",
     "gray-matter": "^4.0.2",
     "next": "latest",
     "next-mdx-remote": "^3.0.1",
     "next-remote-watch": "1.0.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "swr": "^1.2.1"
   },
   "devDependencies": {
+    "@types/react": "^17.0.39",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.4",
-    "tailwindcss": "^3.0.1"
+    "tailwindcss": "^3.0.1",
+    "typescript": "^4.5.5"
   }
 }

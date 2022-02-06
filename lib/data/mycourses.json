@@ -1,0 +1,14 @@
+{
+    "courses": [
+        {
+            "id": 1,
+            "slug": "oft-recited-chapters",
+            "title": "Oft Recited Chapters of the Koran"
+        },
+        {
+            "id": 2,
+            "slug": "maqam-locations",
+            "title": "History of Righteous Muslims"
+        }
+    ]
+}
