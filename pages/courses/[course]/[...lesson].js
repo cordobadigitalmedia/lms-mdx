@@ -16,8 +16,9 @@ export default function Lesson() {
   );
   if (error) return "An error has occurred.";
   if (!data) return "Loading...";
-  if (!lesson) return "Error";
+  if (!lesson || lesson.length < 2) return "Error";
   let lessonSrc = "";
+  console.log(data);
   lessonSrc = data[Number(lesson[0]) - 1].lessons[Number(lesson[1]) - 1].content;
   console.log(lessonSrc);
   console.log(course);

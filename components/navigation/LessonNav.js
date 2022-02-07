@@ -81,12 +81,22 @@ export default function LessonNav({ chapters, lesson, course }) {
                         {chapters.map((chapter, i) =>
                             <div key={`chapter_${i}`}>
                                 <div className="p-0 m-0 py-2 border-t-2 border-slate-400" onClick={() => onToggleAccordion(i)}>
-                                    <div className="transform transition cursor-pointer ml-10 flex items-center pt-2 m-0">
-                                        <div className="w-6 h-6 p-0 m-px border-2 border-slate-400 absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
-                                        <div className="text-black font-medium flex-grow">{chapter.title}</div>
-                                        <div className="text-gray-500 text-sm mx-2">{i === currentChapter ? `${currentLesson + 1} / ${chapter.lessons.length}` : `0 / ${chapter.lessons.length}`}</div>
-                                        <ChevronDownIcon id={"panel" + i + "_down"} className="h-5 w-5 text-slate-500 mr-2" />
-                                        <ChevronUpIcon id={"panel" + i + "_up"} className="h-5 w-5 text-slate-500 mr-2 hidden" />
+                                    <div>
+                                        {currentChapter === i ? <div className="transform transition cursor-pointer ml-10 flex items-center pt-2 m-0">
+                                            <div className="w-6 h-6 p-0 m-px border-2 border-slate-400 absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
+                                            <div className="text-black font-medium flex-grow">{chapter.title}</div>
+                                            <div className="text-gray-500 text-sm mx-2">{i === currentChapter ? `${currentLesson + 1} / ${chapter.lessons.length}` : `0 / ${chapter.lessons.length}`}</div>
+                                            <ChevronDownIcon id={"panel" + i + "_down"} className="h-5 w-5 text-slate-500 mr-2" />
+                                            <ChevronUpIcon id={"panel" + i + "_up"} className="h-5 w-5 text-slate-500 mr-2 hidden" />
+                                        </div> : <Link href={`/courses/${course}/${i + 1}/1`}>
+                                            <div className="transform transition cursor-pointer ml-10 flex items-center pt-2 m-0">
+                                                <div className="w-6 h-6 p-0 m-px border-2 border-slate-400 absolute -left-5 transform -translate-x-2/4 rounded-full z-10"></div>
+                                                <div className="text-black font-medium flex-grow">{chapter.title}</div>
+                                                <div className="text-gray-500 text-sm mx-2">{i === currentChapter ? `${currentLesson + 1} / ${chapter.lessons.length}` : `0 / ${chapter.lessons.length}`}</div>
+                                                <ChevronDownIcon id={"panel" + i + "_down"} className="h-5 w-5 text-slate-500 mr-2" />
+                                                <ChevronUpIcon id={"panel" + i + "_up"} className="h-5 w-5 text-slate-500 mr-2 hidden" />
+                                            </div>
+                                        </Link>}
                                     </div>
                                 </div>
                                 {chapter.lessons.length > 0 &&
