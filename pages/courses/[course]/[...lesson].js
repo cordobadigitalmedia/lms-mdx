@@ -7,9 +7,9 @@ import MenuBar from "~/components/navigation/MenuBar";
 import LessonNav from "~/components/navigation/LessonNav";
 import { lessonFilePaths, LESSONS_PATH } from '~/utils/mdxUtils'
 
-export default function PostPage({ source, frontMatter, jsondata, lesson, course, lessonSrc, err }) {
-  if (err !== "") {
-    return (<div>Error loading data</div>)
+export default function LessonPage({ source, frontMatter, jsondata, lesson, course, lessonSrc, err }) {
+  if (err !== undefined) {
+    return (<h3>Error Loading Lesson Data</h3>)
   }
   return (
     <div>
@@ -22,11 +22,10 @@ export default function PostPage({ source, frontMatter, jsondata, lesson, course
             </div>
             <LessonNav chapters={jsondata} lesson={lesson} course={course} />
           </div>
-          <h1>{frontMatter.title}</h1>
-          <div className="flex-1 p-10 text-2xl font-bold prose prose-green">
-            <MDXRemote {...source}/>
+          <div className="p-2 prose prose-green">
+            <MDXRemote {...source} />
           </div>
-        </div> : <div>Loading</div>}
+        </div> : <h3>Loading Lesson Data</h3>}
     </div>
   )
 }
@@ -36,16 +35,11 @@ export const getStaticProps = async (context) => {
   try {
     const jsonfile = fs.readFileSync(path.join(process.cwd(), "lib/data/" + course + ".json"));
     const jsondata = JSON.parse(jsonfile);
-    let lessonSrc = "";
-    lessonSrc = jsondata[Number(lesson[0]) - 1].lessons[Number(lesson[1]) - 1].content;
-    //add env variable to find site root for fetch
+    const lessonSrc = jsondata[Number(lesson[0]) - 1].lessons[Number(lesson[1]) - 1].content;
     const postFilePath = path.join(LESSONS_PATH, lessonSrc)
-    const source = fs.readFileSync(postFilePath)
-
+    const source = fs.readFileSync(postFilePath);
     const { content, data } = matter(source)
-
     const mdxSource = await serialize(content, {
-      // Optionally pass remark/rehype plugins
       mdxOptions: {
         remarkPlugins: [],
         rehypePlugins: [],
@@ -60,7 +54,6 @@ export const getStaticProps = async (context) => {
         lesson,
         course,
         lessonSrc,
-        err: ""
       },
     }
   } catch (err) {
