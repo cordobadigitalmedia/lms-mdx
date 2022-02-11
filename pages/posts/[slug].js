@@ -63,9 +63,6 @@ export default function PostPage({ source, frontMatter }) {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const res = await fetch("http://localhost:3000/json/oft-recited-chapters.json");
-  //add env variable to find site root for fetch
-  const data2 = await res.json();
   const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`)
   const source = fs.readFileSync(postFilePath)
 
