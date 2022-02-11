@@ -33,15 +33,18 @@ export default function PostPage({ source, frontMatter }) {
           </Link>
         </nav>
       </header>
-      <div className="post-header">
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.description && (
-          <p className="description">{frontMatter.description}</p>
-        )}
-      </div>
-      <main className="prose prose-green">
-        <MDXRemote {...source} components={components} />
-      </main>
+      {frontMatter !== undefined && <div>
+        <div className="post-header">
+          <h1>{frontMatter.title}</h1>
+          {frontMatter.description && (
+            <p className="description">{frontMatter.description}</p>
+          )}
+        </div>
+        <main className="prose prose-green">
+          <MDXRemote {...source} components={components} />
+        </main>
+      </div>}
+
 
       <style jsx>{`
         .post-header h1 {
@@ -60,9 +63,11 @@ export default function PostPage({ source, frontMatter }) {
 }
 
 export const getStaticProps = async ({ params }) => {
+  const res = await fetch("http://localhost:3000/json/oft-recited-chapters.json");
+  //add env variable to find site root for fetch
+  const data2 = await res.json();
   const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`)
   const source = fs.readFileSync(postFilePath)
-  console.log(source);
 
   const { content, data } = matter(source)
 
@@ -92,6 +97,6 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
