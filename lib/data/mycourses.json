@@ -1,14 +1,16 @@
-{
-    "courses": [
-        {
-            "id": 1,
-            "slug": "oft-recited-chapters",
-            "title": "Oft Recited Chapters of the Koran"
-        },
-        {
-            "id": 2,
-            "slug": "maqam-locations",
-            "title": "History of Righteous Muslims"
-        }
-    ]
-}
+[
+    {
+        "id": 1,
+        "slug": "oft-recited-chapters",
+        "title": "Oft Recited Chapters of the Koran",
+        "description": "Explanation of the short surahs of the Koran.",
+        "imgSrc": "/images/COLLECTIE_TROPENMUSEUM_Handgeschreven_Koran_in_Arabisch_schrift_TMnr_3355-1.jpeg"
+    },
+    {
+        "id": 2,
+        "slug": "maqam-locations",
+        "title": "History of Righteous Muslims",
+        "description": "Locations of graves of righteous muslims and their background.",
+        "imgSrc": "/images/Kaaba_(1)_Makkah_(Mecca).jpeg"
+    }
+]
