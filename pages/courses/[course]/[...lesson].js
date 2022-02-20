@@ -6,6 +6,7 @@ import path from 'path'
 import MenuBar from "~/components/navigation/MenuBar";
 import LessonNav from "~/components/navigation/LessonNav";
 import { lessonFilePaths, LESSONS_PATH } from '~/utils/mdxUtils'
+import CourseProgress from '~/components/navigation/CourseProgress'
 
 export default function LessonPage({ source, frontMatter, jsondata, lesson, course, lessonSrc, err }) {
   if (err !== undefined) {
@@ -16,10 +17,8 @@ export default function LessonPage({ source, frontMatter, jsondata, lesson, cour
       {jsondata !== undefined && frontMatter != undefined ?
         <div className="relative min-h-screen md:flex">
           <MenuBar />
-          <div className="sidebar bg-gray-100 text-blue-100 w-96 space-y-6 px-0 absolute md:relative inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition duration-200 ease-in-out">
-            <div className="round-md bg-white p-2 m-2 drop-shadow-sm">
-              <span className="text-xl font-extrabold text-slate-800">My Course</span>
-            </div>
+          <div className="sidebar bg-gray-100 w-96 space-y-6 px-0 absolute md:relative inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition duration-200 ease-in-out">
+            <CourseProgress/>
             <LessonNav chapters={jsondata} lesson={lesson} course={course} />
           </div>
           <div className="p-2 prose prose-green">
