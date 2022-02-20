@@ -1,6 +1,6 @@
 # LMS MDX Template
 
-The goal of this project is to provide a `Next.js` starter template for a Learning Management System (LMS) that used `mdx` files for the learning content. An LMS is a platform for hosting courses and each course consists of modules or chapters, which in turn consist of lessons. The platform has the following two main characteristics:
+The goal of this project is to provide a `Next.js` starter template for a Learning Management System (LMS) that uses `mdx` files for the learning content. An LMS is a platform for hosting courses and each course consists of modules or chapters, which in turn consist of lessons. The platform has the following two main characteristics:
 
 - The lessons are decoupled from the courses. That means that the lessons are stored in folders that do not follow the course names but rather categories of learning content. In this way, the same lesson can be easily used in different courses under different modules and in different sequences.
 - The course and lesson page style follows a successful model used by many leading learning platforms such as thinkific.com. I am using `tailwindcss` to style the site.
